@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--
+	NOTES:
+	1. All tokens are represented by '$' sign in the template.
+	2. You can write your code only wherever mentioned.
+	3. All occurrences of existing tokens will be replaced by their appropriate values.
+	4. Blank lines will be removed automatically.
+	5. Remove unnecessary comments before creating your template.
+-->
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="authoring-tool" content="Adobe_Animate_CC">
+<title>visus</title>
+<!-- write your code here -->
+<style>
+  #animation_container {
+	position:absolute;
+	margin:auto;
+	left:0;right:0;
+	top:0;bottom:0;
+  }
+</style>
+<script src="node_modules\createjs\builds\1.0.0\createjs.min.js"></script> 
+<!-- <script src="node_modules\createjs\builds\1.0.0\createjs.min.js"></script>  -->
+<script src="visus.js"></script>
+<script>
+// Global Scripts
+var ahunter_url_global = "https://dvs.mntk-nsk.ru/person.php/";
+var answer = '';
+var passwrd = '';
+var arrow_length = 0;
+var length_meter = '';
+var fact0 = 0.0;
+var circle_width = 0;
+var fact2 = 0.0;
+var factor = 0.0;
+var prev_orient = 0;
+var Response = '';
+var tested_visusOD = -1;
+var tested_visusOS = -1;
+var tested_colorOD = 0;
+var tested_colorOS = 0;
+var tested_amslerOD = 0;
+var tested_amslerOS = 0;
+var tested_astOD = 0;
+var tested_astOS = 0;
+var last_name = '';
+var first_name = '';
+var middle_name = '';
+var klass_name = '';
+var home_address = '';
+var home_phone = '';
+var user_id = -1;
+var school_id = '';
+var school_name = '';
+var birthdate = '';
+var lensesORspect = '';
+var visus = Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0);
+var dim_STD = Array(1.0, 0.5, 0.333, 0.25, 0.20, 0.166, 0.143, 0.125, 0.111, 0.100);
+var mincount = Array(3, 3, 4, 5, 5, 6, 6, 7, 7, 8);
+var dopusk = Array(2, 1, 1, 1, 1, 1, 1, 2, 2, 2);
+var OK_OD = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var OK_OS = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var AllTestsChoose = false;
+var level = 0;
+var count = 0;
+var eye = ''; // eye
+var validate_msg = '';
+var fields_count = 0;
+var widthW = 0;
+var fontsz = "px";
+var messageStyle = {
+	"text-align": "center",
+	"font-size": "2vw",
+	"font-weight": "700",
+	"font-family": "Arial",
+	"color": "AA0000",
+	//			"background-color": "#EEEEEE",
+	"border": "2px solid #FFFFFF"
+};
+var buttonStyle = {
+	//"font-size": "2em",
+	"font-size": "2.25w",
+	"font-weight": "700",
+	"font-family": "Arial",
+	"font-color": "0",
+	"box-shadow": "inset 0 0 5px rgba(0, 0, 0, .5)",
+	"background-color": "#67ace6",
+	//			"border-radius": "22px",
+	"border": "2px solid #0033FF"
+};
+var cardStyle = {
+	"font-size": "2.25w",
+	"font-weight": "700",
+	"font-family": "Arial",
+	"font-color": "0",
+	//	"background-image": "url('bgdesert.jpg')",
+	"background-color": "#67ace6",
+	"border-radius": "14px",
+	"border": "2px solid #0033FF",
+	"width": "85.7mm",
+	"height": "54mm"
+};
+var inputStyle = {
+	//	"font-size": "large",
+	"font-size": "2vw",
+	"font-weight": "700",
+	"font-family": "Arial",
+	"font-color": "0",
+	"border": "2px solid #999999"
+};
+var checkboxStyle = {
+	//	"font-size": "1.5em",
+	"font-size": "2vw",
+	"font-weight": "700",
+	"font-family": "Arial",
+	"font-color": "0",
+	//			"background":"#67ace6",
+	"with": "146px",
+	"height": "50px"
+	//			"border": "2px solid #80AACB"
+};
+var radiosetStyle = {
+	//	"font-size": "1.5em",
+	"font-size": "2vw",
+	"font-weight": "700",
+	"font-family": "Arial",
+	"font-color": "0",
+	//			"background-color": "#98C9EB",
+	"border": "none"
+};
+var radiosetLabelStyle = {
+	//	"font-size": "1em",
+	"font-size": "2vw",
+	"font-weight": "700",
+	"font-family": "Arial",
+	"font-color": "0",
+	"background-color": "#67ace6",
+	"border": "2px solid #80AACB"
+};
+function random() {
+	var max = 4,
+		min = 1;
+	var rnd = Math.floor(Math.random() * (max - min + 1)) + min;
+	if (rnd == 3) {
+		rnd = -1;
+	}
+	return rnd * 90;
+}
+function window_width() {
+	if (document.body) {
+		winW = document.body.offsetWidth;
+	}
+	if (document.compatMode == 'CSS1Compat' &&
+		document.documentElement &&
+		document.documentElement.offsetWidth) {
+		winW = document.documentElement.offsetWidth;
+		return winW
+	}
+	if (window.innerWidth && window.innerWidth) {
+		winW = window.innerWidth;
+		return winW;
+	}
+}</script>
+<script type='text/javascript' src='ahunter_suggest.js'></script>
+<script>
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+function init() {
+	canvas = document.getElementById("canvas");
+	anim_container = document.getElementById("animation_container");
+	dom_overlay_container = document.getElementById("dom_overlay_container");
+	var comp=AdobeAn.getComposition("BB307325A7D51844921FF71FAF2DC54B");
+	var lib=comp.getLibrary();
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+	var lib=comp.getLibrary();
+	loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt, comp) {
+	var images=comp.getImages();	
+	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+}
+function handleComplete(evt,comp) {
+	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	var lib=comp.getLibrary();
+	var ss=comp.getSpriteSheet();
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	exportRoot = new lib.Comp_vision202382suggest();
+	stage = new lib.Stage(canvas);
+	stage.enableMouseOver();	
+	//Registers the "tick" event listener.
+	fnStartAnimation = function() {
+		stage.addChild(exportRoot);
+		createjs.Ticker.framerate = lib.properties.fps;
+		createjs.Ticker.addEventListener("tick", stage);
+	}	    
+	//Code to support hidpi screens and responsive scaling.
+	AdobeAn.makeResponsive(true,'both',true,1,[canvas,anim_container,dom_overlay_container]);	
+	AdobeAn.compositionLoaded(lib.properties.id);
+	fnStartAnimation();
+}
+</script>
+<!-- write your code here -->
+</head>
+<body onload="init();" style="margin:0px; font-size: 20px;">
+	
+	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:800px; height:600px;">
+		<canvas id="canvas" width="800" height="600" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:800px; height:600px; position: absolute; left: 0px; top: 0px; display: block;">
+		</div>
+	</div>
+	<div style="margin-left: 20px; display: flex; position: absolute;">
+		<div style="display: flex; margin: 0 20px 0 0; color: #EB6658; font-size: 25px;">
+			<p>Расстояние до лица: </p>
+			<p id="testDiv">0</p>
+		</div>
+	</div>
+</body>
+</html>
